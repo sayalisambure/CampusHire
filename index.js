@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require('express');
-app.set('trust proxy', 1);
 const session = require('express-session');
 const path = require('path');
 const multer = require('multer');
@@ -8,6 +7,7 @@ const XLSX = require('xlsx');
 const db = require('./database');
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 8000;
 
 app.set('view engine', 'ejs');
