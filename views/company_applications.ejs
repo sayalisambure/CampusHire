@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<title>Applicants</title>
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:15px 0}.danger{background:#dc3545!important}.success{background:#198754!important}.muted{color:#666;font-size:14px}.reason{min-width:260px;padding:9px;border:1px solid #ccc;border-radius:6px}.check{width:18px;height:18px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Applicants</h1>
+<p class="muted">Select multiple applicants and accept or reject them together. Each selected student receives a notification.</p>
+<form method="POST" action="/company/applications/bulk" id="bulkForm">
+<div class="actions">
+<label><input type="checkbox" class="check" id="selectAll"> Select All</label>
+<input class="reason" name="reason" placeholder="Rejection reason (optional)">
+<button class="success" type="submit" name="status" value="SELECTED" onclick="return confirm('Accept all selected applicants?')">Accept Selected</button>
+<button class="danger" type="submit" name="status" value="REJECTED" onclick="return confirm('Reject all selected applicants?')">Reject Selected</button>
+</div>
+<table class="table">
+<tr><th>Select</th><th>Student</th><th>Email</th><th>Drive</th><th>Status</th><th>Rejection Reason</th></tr>
+<%rows.forEach(r=>{%>
+<tr>
+<td><input class="appCheck check" type="checkbox" name="application_ids" value="<%=r.application_id%>"></td>
+<td><%=r.student_name%></td>
+<td><%=r.email||''%></td>
+<td><%=r.drive_name%></td>
+<td><%=r.status%></td>
+<td><%=r.rejection_reason||'-'%></td>
+</tr>
+<%})%>
+</table>
+</form>
+</div>
+<script>
+document.getElementById('selectAll').addEventListener('change',function(){document.querySelectorAll('.appCheck').forEach(c=>c.checked=this.checked)});
+</script>
+</body>
+</html>
