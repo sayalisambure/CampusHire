@@ -28,9 +28,14 @@ const upload = multer({
 
 const q = (sql, params = []) =>
     new Promise((resolve, reject) => {
-        db.query(sql, params, (err, results) =>
-            err ? reject(err) : resolve(results)
-        );
+        db.query(sql, params, (err, results) => {
+            if (err) {
+                console.error('Database query failed:', err.message);
+                return reject(err);
+            }
+
+            resolve(results);
+        });
     });
 
 const sid = uid =>
