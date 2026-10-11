@@ -13,10 +13,6 @@ Node.js + Express + EJS + MySQL + mysql2 + express-session + XLSX.
 6. Run `npm start`.
 7. Open http://localhost:8000
 
-## Demo logins
-Student: sayali@gmail.com / 123456
-Faculty: admin@campushire.com / admin123
-Company: tcs@campushire.com / company123
 
 ## DBMS concepts
 JOIN, GROUP BY, HAVING, COUNT, AVG, MAX, subquery and eligibility conditions are used in the backend.
